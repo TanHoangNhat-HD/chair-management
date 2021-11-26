@@ -1,0 +1,11 @@
+.login__container {
+  min-height: 100vh;
+  padding: 50px;
+  .login__form {
+    max-width: 300px;
+    margin: auto;
+    .login__title {
+      margin: 20px auto;
+    }
+  }
+}
