@@ -1,7 +1,12 @@
-import * as React from 'react';
+import { Layout } from 'antd';
+import { Outlet } from 'react-router';
+import SideBar from './SideBar/SideBar';
 
-export interface AdminLayoutProps {}
-
-export function AdminLayout(props: AdminLayoutProps) {
-  return <div>AdminLayout</div>;
+export function AdminLayout() {
+  return (
+    <Layout style={{ minHeight: '100vh' }}>
+      <SideBar />
+      <Outlet />
+    </Layout>
+  );
 }

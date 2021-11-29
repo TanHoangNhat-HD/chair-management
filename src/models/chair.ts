@@ -3,5 +3,5 @@ export interface Chair {
   name: string;
   price?: number;
   weight?: number;
-  material?: string;
+  material?: Array<string>;
 }

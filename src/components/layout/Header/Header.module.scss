@@ -1,0 +1,13 @@
+.header {
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+  .header__left {
+    .header__title {
+      color: white;
+    }
+  }
+
+  .header__right {
+  }
+}

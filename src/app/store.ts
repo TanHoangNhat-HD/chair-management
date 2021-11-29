@@ -1,14 +1,14 @@
 import { Action, configureStore, ThunkAction } from '@reduxjs/toolkit';
 import authReducer from 'features/auth/authSlice';
+import chairReducer from 'features/chair/chairSlice';
 import createSagaMiddleware from 'redux-saga';
-import counterReducer from '../features/counter/counterSlice';
 import rootSaga from './saga';
 
 const sagaMiddleware = createSagaMiddleware();
 export const store = configureStore({
   reducer: {
-    counter: counterReducer,
     auth: authReducer,
+    chair: chairReducer,
   },
   middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(sagaMiddleware),
 });

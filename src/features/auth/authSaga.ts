@@ -1,9 +1,11 @@
 import { call, delay, fork, put, take } from '@redux-saga/core/effects';
 import { PayloadAction } from '@reduxjs/toolkit';
-import { login, loginFailed, LoginPayload, loginSuccess, logout } from './authSlice';
+import { LoginPayload } from 'models';
+import { login, loginFailed, loginSuccess, logout } from './authSlice';
 
 function* handleLogin(payload: LoginPayload) {
   try {
+    console.log('Call API ...', payload);
     /**
      * Call API
      */

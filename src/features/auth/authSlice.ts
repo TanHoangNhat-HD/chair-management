@@ -1,12 +1,6 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { RootState } from 'app/store';
-import { User } from 'models';
-
-export interface LoginPayload {
-  username: string;
-  password: string;
-}
-
+import { LoginPayload, User } from 'models';
 export interface AuthState {
   isLoggedIn: boolean;
   isLogging?: boolean;

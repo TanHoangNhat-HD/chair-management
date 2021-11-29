@@ -1,0 +1,11 @@
+.sidebar__header {
+  height: 64px;
+  padding: 10px;
+  .sidebar__logo {
+    background: url('../../../assets/images/logo-white.png') center center;
+    background-repeat: no-repeat;
+    background-size: contain;
+    height: 100%;
+    width: 100%;
+  }
+}

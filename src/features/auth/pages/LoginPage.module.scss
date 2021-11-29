@@ -1,8 +1,9 @@
 .login__container {
   min-height: 100vh;
   padding: 50px;
-  .login__form {
-    max-width: 300px;
+  .login__form,
+  .login__noti {
+    max-width: 400px;
     margin: auto;
     .login__title {
       margin: 20px auto;
