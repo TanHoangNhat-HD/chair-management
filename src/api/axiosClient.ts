@@ -1,7 +1,7 @@
 import axios, { AxiosRequestConfig, AxiosResponse } from 'axios';
 
 const axiosClient = axios.create({
-  baseURL: 'https://my-json-server.typicode.com/TanHoangNhat-HD/chair-management-server',
+  baseURL: 'http://localhost:3333',
   headers: {
     'Content-Type': 'application/json',
   },

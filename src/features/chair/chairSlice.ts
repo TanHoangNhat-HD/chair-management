@@ -5,7 +5,7 @@ import { RootState } from 'app/store';
 export interface ChairState {
   loading: boolean;
   list?: Chair[];
-  filter?: ListParams;
+  filter: ListParams;
   pagination?: PaginationParams;
 }
 
@@ -14,12 +14,14 @@ const initialState: ChairState = {
   list: [],
   filter: {
     _page: 1,
-    _limit: 5,
+    _limit: 2,
+    name_like: '',
+    material_like: '',
   },
   pagination: {
     _page: 1,
-    _limit: 5,
-    _total: 10,
+    _limit: 2,
+    _totalRows: 10,
   },
 };
 
@@ -49,6 +51,8 @@ export const chairActions = chairSlice.actions;
 
 // selectors
 export const selectChairList = (state: RootState) => state.chair.list;
+export const selectChairPagination = (state: RootState) => state.chair.pagination;
+export const selectChairFilter = (state: RootState) => state.chair.filter;
 
 // reducer
 const chairReducer = chairSlice.reducer;

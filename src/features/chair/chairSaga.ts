@@ -1,4 +1,4 @@
-import { call, delay, fork, put, takeLatest } from '@redux-saga/core/effects';
+import { call, put, takeLatest } from '@redux-saga/core/effects';
 import { PayloadAction } from '@reduxjs/toolkit';
 import chairApi from 'api/chairApi';
 import { Chair, ListParams, ListResponse } from 'models';

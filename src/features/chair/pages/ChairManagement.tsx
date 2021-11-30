@@ -1,22 +1,54 @@
-import { Breadcrumb, Layout, Table, Tag } from 'antd';
+import { Breadcrumb, Layout, Table, Tag, Button, Input, Form, Select, Space } from 'antd';
+import { DeleteFilled, EditFilled } from '@ant-design/icons';
 import { useAppDispatch, useAppSelector } from 'app/hooks';
 import HeaderComponent from 'components/layout/Header/Header.component';
-import { useEffect } from 'react';
+import { useEffect, useRef } from 'react';
 import { Chair } from 'models';
-import { chairActions, selectChairList } from '../chairSlice';
+import {
+  chairActions,
+  selectChairFilter,
+  selectChairList,
+  selectChairPagination,
+} from '../chairSlice';
 
 const { Content, Footer } = Layout;
 
+interface MaterialColor {
+  [key: string]: string;
+}
+
+const materialColor: MaterialColor = {
+  net: 'cyan',
+  fabric: 'orange',
+  plastic: 'purple',
+  alloy: 'gold',
+};
+
 const columns = [
+  {
+    title: '',
+    key: 'edit',
+    width: 50,
+    render: (text: string, record: Chair) => (
+      <>
+        <Button
+          type="link"
+          icon={<EditFilled style={{ color: '#52c41a', fontSize: '20px' }} />}
+        ></Button>
+      </>
+    ),
+  },
   {
     title: 'Name',
     dataIndex: 'name',
+    width: 450,
     key: 'name',
-    render: (text: string) => <a>{text}</a>,
+    render: (text: string) => <Button type="link">{text}</Button>,
   },
   {
     title: 'Price',
     dataIndex: 'price',
+    width: 100,
     key: 'price',
   },
   {
@@ -26,7 +58,7 @@ const columns = [
     render: (material: Array<string>) => (
       <>
         {material.map((m) => (
-          <Tag key={m} color="green">
+          <Tag key={m} color={materialColor[`${m}`]}>
             {m.toUpperCase()}
           </Tag>
         ))}
@@ -34,34 +66,89 @@ const columns = [
     ),
   },
   {
-    title: 'Action',
-    key: 'action',
-    render: (text: string, record: Chair) => <a>Delete {record.id}</a>,
+    title: 'Delete',
+    key: 'delete',
+    width: 50,
+    render: (text: string, record: Chair) => (
+      <>
+        <Button
+          type="link"
+          icon={<DeleteFilled style={{ color: '#f5222d', fontSize: '20px' }} />}
+        ></Button>
+      </>
+    ),
   },
 ];
 
 export default function ChairManagement() {
   const dispatch = useAppDispatch();
   const data = useAppSelector(selectChairList);
+  const pagination = useAppSelector(selectChairPagination);
+  const filter = useAppSelector(selectChairFilter);
+  const typingRef = useRef<ReturnType<typeof setTimeout> | undefined>(undefined);
+
+  const handlePageChange = (page: number, pageSize: number) => {
+    console.log(page, pageSize);
+    dispatch(chairActions.setFilters({ ...filter, _page: page, _limit: pageSize }));
+  };
+
+  const handleSearch = (e: any) => {
+    const value = e.target.value;
+    if (typingRef.current) {
+      clearTimeout(typingRef.current);
+    }
+    typingRef.current = setTimeout(() => {
+      dispatch(chairActions.setFilters({ ...filter, name_like: value }));
+    }, 300);
+  };
+
+  const handleFilter = (value: string) => {
+    dispatch(chairActions.setFilters({ ...filter, material_like: value }));
+    console.log(value);
+  };
   useEffect(() => {
-    dispatch(
-      chairActions.fetchChairList({
-        _page: 1,
-        _limit: 15,
-      })
-    );
-  }, []);
+    dispatch(chairActions.fetchChairList(filter));
+  }, [dispatch, filter]);
   return (
     <Layout className="site-layout">
       <HeaderComponent headerTitle="Chair Management" />
-      <Content style={{ margin: '0 16px' }}>
+      <Content style={{ padding: '0 48px' }}>
         <Breadcrumb style={{ margin: '16px 0' }}>
           <Breadcrumb.Item>Admin</Breadcrumb.Item>
           <Breadcrumb.Item>Chairs</Breadcrumb.Item>
         </Breadcrumb>
-        <div style={{ padding: 24, minHeight: 360 }}>
-          <Table columns={columns} dataSource={data}></Table>
-        </div>
+        <Space align="center" style={{ width: '100%', justifyContent: 'space-between' }}>
+          <Form.Item style={{ width: 200 }}>
+            <Input.Search
+              placeholder="Find chair ..."
+              allowClear
+              onChange={handleSearch}
+            ></Input.Search>
+          </Form.Item>
+          <Form.Item label="Material" style={{ width: 200 }}>
+            <Select onChange={handleFilter}>
+              <Select.Option value="">All</Select.Option>
+              <Select.Option value="net">Net</Select.Option>
+              <Select.Option value="fabric">Fabric</Select.Option>
+              <Select.Option value="plastic">Plastic</Select.Option>
+              <Select.Option value="alloy">Alloy</Select.Option>
+            </Select>
+          </Form.Item>
+        </Space>
+        <Table
+          columns={columns}
+          dataSource={data}
+          rowKey="id"
+          pagination={{
+            position: ['bottomLeft'],
+            current: pagination?._page,
+            pageSize: pagination?._limit,
+            total: pagination?._totalRows,
+            showSizeChanger: true,
+            pageSizeOptions: ['1', '2', '5', '10', '15'],
+            onChange: handlePageChange,
+          }}
+        ></Table>
       </Content>
       <Footer style={{ textAlign: 'center' }}>Chair Management ©2021 Created by HDWebSoft</Footer>
     </Layout>

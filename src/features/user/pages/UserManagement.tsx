@@ -1,7 +1,7 @@
 import { Breadcrumb, Layout } from 'antd';
 import HeaderComponent from 'components/layout/Header/Header.component';
 
-const { Header, Content, Footer } = Layout;
+const { Content, Footer } = Layout;
 
 export default function UserManagement() {
   return (

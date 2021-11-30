@@ -2,6 +2,7 @@ import { Layout, Menu } from 'antd';
 import { useState } from 'react';
 import style from './SideBar.module.scss';
 import { Link } from 'react-router-dom';
+import { TeamOutlined, DesktopOutlined } from '@ant-design/icons';
 
 const { Sider } = Layout;
 
@@ -17,11 +18,11 @@ export default function SideBar() {
         <div className={style.sidebar__logo}></div>
       </div>
       <Menu theme="dark" mode="inline">
-        <Menu.Item key="1">
-          <Link to="/admin/chairs">Chair</Link>
+        <Menu.Item key="1" icon={<DesktopOutlined />}>
+          <Link to="/admin/chairs">Chair Management</Link>
         </Menu.Item>
-        <Menu.Item key="2">
-          <Link to="/admin/users">User</Link>
+        <Menu.Item key="2" icon={<TeamOutlined />}>
+          <Link to="/admin/users">User Management</Link>
         </Menu.Item>
       </Menu>
     </Sider>
