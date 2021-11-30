@@ -6,6 +6,8 @@ import '../node_modules/antd/dist/antd.css';
 import AuthProvider from 'contexts/authContext';
 import ChairManagement from 'features/chair/pages/ChairManagement';
 import UserManagement from 'features/user/pages/UserManagement';
+import AddEditChair from 'features/chair/pages/AddEditChair';
+import ShowChair from 'features/chair/pages/ShowChair';
 function App() {
   return (
     <>
@@ -21,7 +23,10 @@ function App() {
               </PrivateRoute>
             }
           >
-            <Route path="chairs" element={<ChairManagement />} />
+            <Route path="chairs" element={<ChairManagement />}>
+              <Route path="" element={<ShowChair />} />
+              <Route path="add" element={<AddEditChair />} />
+            </Route>
             <Route path="users" element={<UserManagement />} />
           </Route>
           <Route path="*" element={<NotFound />} />
