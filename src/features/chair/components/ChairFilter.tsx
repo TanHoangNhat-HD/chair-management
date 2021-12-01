@@ -4,7 +4,7 @@ import { ListParams } from 'models';
 
 interface ChairFilterProp {
   filter: ListParams;
-  onSearch: (filer: ListParams) => void;
+  onSearch: (filter: ListParams) => void;
   onFilter: (filter: ListParams) => void;
 }
 
