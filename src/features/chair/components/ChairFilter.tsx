@@ -1,6 +1,7 @@
 import { Form, Input, Select, Space } from 'antd';
 import { ChangeEvent } from 'hoist-non-react-statics/node_modules/@types/react';
 import { ListParams } from 'models';
+import { useTranslation } from 'react-i18next';
 
 interface ChairFilterProp {
   filter: ListParams;
@@ -9,6 +10,7 @@ interface ChairFilterProp {
 }
 
 export default function ChairFilter({ filter, onSearch, onFilter }: ChairFilterProp) {
+  const { t } = useTranslation();
   const handleSearchChange = (e: ChangeEvent<HTMLInputElement>) => {
     const newFilter = {
       ...filter,
@@ -29,18 +31,18 @@ export default function ChairFilter({ filter, onSearch, onFilter }: ChairFilterP
     <Space align="center" style={{ width: '100%', justifyContent: 'space-between' }}>
       <Form.Item style={{ width: 200 }}>
         <Input.Search
-          placeholder="Find chair ..."
+          placeholder={t('find-chair')}
           allowClear
           onChange={handleSearchChange}
         ></Input.Search>
       </Form.Item>
-      <Form.Item label="Material" style={{ width: 200 }}>
+      <Form.Item label={t('material')} style={{ width: 200 }}>
         <Select onChange={handleFilterChange}>
-          <Select.Option value="">All</Select.Option>
-          <Select.Option value="net">Net</Select.Option>
-          <Select.Option value="fabric">Fabric</Select.Option>
-          <Select.Option value="plastic">Plastic</Select.Option>
-          <Select.Option value="alloy">Alloy</Select.Option>
+          <Select.Option value="">{t('all')}</Select.Option>
+          <Select.Option value="net">{t('net')}</Select.Option>
+          <Select.Option value="fabric">{t('fabric')}</Select.Option>
+          <Select.Option value="plastic">{t('plastic')}</Select.Option>
+          <Select.Option value="alloy">{t('alloy')}</Select.Option>
         </Select>
       </Form.Item>
     </Space>

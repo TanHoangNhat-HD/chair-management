@@ -4,10 +4,12 @@ import chairApi from 'api/chairApi';
 import { Chair } from 'models';
 import { useEffect } from 'react';
 import { Controller, SubmitHandler, useForm } from 'react-hook-form';
+import { useTranslation } from 'react-i18next';
 import { useNavigate, useParams } from 'react-router';
 
 export default function AddEditChair() {
   const navigate = useNavigate();
+  const { t } = useTranslation();
   const { chairId } = useParams() as { chairId: string };
   const {
     handleSubmit,
@@ -63,49 +65,49 @@ export default function AddEditChair() {
         style={{ width: 400 }}
         onFinish={handleSubmit(handleFormSubmit)}
       >
-        <Form.Item label="Name">
+        <Form.Item label={t('name')}>
           <Controller
             name="name"
             control={control}
-            rules={{ required: "'Name' is required" }}
+            rules={{ required: `'${t('name')}' ${t('require')}` }}
             render={({ field }) => <Input allowClear {...field} />}
           />
           <ErrorMessage errors={errors} name="name" />
         </Form.Item>
-        <Form.Item label="Price">
+        <Form.Item label={t('price')}>
           <Controller
             name="price"
             control={control}
             rules={{
-              pattern: { value: /\d+/, message: "'Price' must be a number" },
-              min: { value: 0, message: "'Price' must be a positive number" },
+              pattern: { value: /\d+/, message: `'${t('price')}' ${t('be-a-number')}` },
+              min: { value: 0, message: `'${t('price')}' ${t('pos-number')}` },
             }}
             render={({ field }) => <Input suffix="VND" allowClear {...field} />}
           />
           <ErrorMessage errors={errors} name="price" />
         </Form.Item>
-        <Form.Item label="Weight">
+        <Form.Item label={t('weight')}>
           <Controller
             name="weight"
             control={control}
             rules={{
-              pattern: { value: /\d+/, message: "'Weight' must be a number" },
-              min: { value: 0, message: "'Weight' must be a positive number" },
+              pattern: { value: /\d+/, message: `'${t('weight')}' ${t('be-a-number')}` },
+              min: { value: 0, message: `'${t('weight')}' ${t('pos-number')}` },
             }}
             render={({ field }) => <Input suffix="Kg" allowClear {...field} />}
           />
           <ErrorMessage errors={errors} name="weight" />
         </Form.Item>
-        <Form.Item name="material" label="Material">
+        <Form.Item label={t('material')}>
           <Controller
             name="material"
             control={control}
             render={({ field }) => (
               <Select mode="multiple" allowClear {...field}>
-                <Select.Option value="net">Net</Select.Option>
-                <Select.Option value="fabric">Fabric</Select.Option>
-                <Select.Option value="plastic">Plastic</Select.Option>
-                <Select.Option value="alloy">Alloy</Select.Option>
+                <Select.Option value="net">{t('net')}</Select.Option>
+                <Select.Option value="fabric">{t('fabric')}</Select.Option>
+                <Select.Option value="plastic">{t('plastic')}</Select.Option>
+                <Select.Option value="alloy">{t('alloy')}</Select.Option>
               </Select>
             )}
           />
@@ -118,10 +120,10 @@ export default function AddEditChair() {
               type="primary"
               htmlType="submit"
             >
-              {chairId ? 'Update' : 'Add'}
+              {chairId ? t('update') : t('add')}
             </Button>
             <Button style={{ width: '48%' }} htmlType="button" onClick={handleReset}>
-              Reset
+              {t('reset')}
             </Button>
           </div>
         </Form.Item>

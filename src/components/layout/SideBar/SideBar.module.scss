@@ -1,11 +1,34 @@
-.sidebar__header {
-  height: 64px;
-  padding: 10px;
-  .sidebar__logo {
-    background: url('../../../assets/images/logo-white.png') center center;
-    background-repeat: no-repeat;
-    background-size: contain;
-    height: 100%;
-    width: 100%;
+.sidebar__container {
+  height: 100%;
+  .sidebar__header {
+    height: 64px;
+    padding: 10px;
+    .sidebar__logo {
+      background: url('../../../assets/images/logo-white.png') center center;
+      background-repeat: no-repeat;
+      background-size: contain;
+      height: 100%;
+      width: 100%;
+    }
+  }
+
+  .sidebar__body {
+    height: calc(100% - 84px);
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+    .lg__change {
+      display: flex;
+      justify-content: center;
+      .lg__btn {
+        box-shadow: none;
+      }
+      .lg__btn:global(.ant-switch) {
+        background-color: #f5222d;
+      }
+      .lg__btn:global(.ant-switch-checked) {
+        background-color: #1890ff;
+      }
+    }
   }
 }

@@ -1,0 +1,42 @@
+{
+  "chair": {
+    "chair": "Ghế",
+    "management": "Quản lý Ghế"
+  },
+  "user": {
+    "management": "Quản lý Người dùng"
+  },
+  "setting": "Cài đặt",
+  "welcome": "Xin chào",
+  "login": "Đăng nhập",
+  "logout": "Đăng xuất",
+  "notfound": "Trang yêu cầu không tồn tại",
+  "loginStatus": "Bạn đã đăng nhập!!!",
+  "now-you-can": "Bạn có thể",
+  "go-to-admin-page": "đi đến trang Quản trị",
+  "or": "hoặc",
+  "logging-out": "đăng xuất ...",
+  "find-chair": "Tìm kiếm ghế ...",
+  "all": "Tất cả",
+  "net": "Lưới",
+  "fabric": "Vải",
+  "plastic": "Nhựa",
+  "alloy": "Hợp kim",
+  "name": "Tên",
+  "price": "Giá",
+  "material": "Chất liệu",
+  "weight": "Khối lượng",
+  "delete": "Xóa",
+  "modal-confirm": "Bạn có chắc chắn muốn xóa ghế này?",
+  "yes": "Xóa",
+  "no": "Hủy",
+  "require": "bắt buộc nhập",
+  "be-a-number": "phải là một số",
+  "pos-number": "phải là một số dương",
+  "add": "Thêm ghế",
+  "add-new": "Thêm mới ghế",
+  "update": "Cập nhập ghế",
+  "reset": "Xóa",
+  "username": "Tên đăng nhập",
+  "password": "Mật khẩu"
+}
