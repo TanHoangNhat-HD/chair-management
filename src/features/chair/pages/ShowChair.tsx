@@ -3,6 +3,7 @@ import chairApi from 'api/chairApi';
 import { useAppDispatch, useAppSelector } from 'app/hooks';
 import { Chair, ListParams } from 'models';
 import { useEffect } from 'react';
+import { useTranslation } from 'react-i18next';
 import { useLocation, useNavigate } from 'react-router';
 import { Link } from 'react-router-dom';
 import { chairActions, selectChairFilter, selectChairList } from '../chairSlice';
@@ -15,6 +16,7 @@ export default function ShowChair() {
   const chairList = useAppSelector(selectChairList);
   const navigate = useNavigate();
   const location = useLocation();
+  const { t } = useTranslation();
 
   const handleEditChair = (chairId: string) => {
     navigate(`${location.pathname}/edit/${chairId}`);
@@ -49,7 +51,7 @@ export default function ShowChair() {
     <>
       <Space style={{ position: 'absolute', top: '75px', right: '48px', zIndex: 10 }}>
         <Link to="/admin/chairs/add">
-          <Button type="primary">Add new chair</Button>
+          <Button type="primary">{t('add-new')}</Button>
         </Link>
       </Space>
       <Layout.Content style={{ padding: '0 48px' }}>

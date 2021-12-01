@@ -2,6 +2,7 @@ import { DeleteFilled, EditFilled, ExclamationCircleOutlined } from '@ant-design
 import { Button, Modal, Table, Tag } from 'antd';
 import { useAppSelector } from 'app/hooks';
 import { Chair } from 'models';
+import { TFunction, useTranslation } from 'react-i18next';
 import { selectChairPagination } from '../chairSlice';
 
 interface MaterialColor {
@@ -15,7 +16,11 @@ const materialColor: MaterialColor = {
   alloy: 'gold',
 };
 
-function renderColumns(onEdit: (chairId: string) => void, onDelete: (chairId: string) => void) {
+function renderColumns(
+  onEdit: (chairId: string) => void,
+  onDelete: (chairId: string) => void,
+  t: TFunction
+) {
   return [
     {
       title: '',
@@ -30,20 +35,20 @@ function renderColumns(onEdit: (chairId: string) => void, onDelete: (chairId: st
       ),
     },
     {
-      title: 'Name',
+      title: t('name'),
       dataIndex: 'name',
       width: 450,
       key: 'name',
       render: (text: string) => <Button type="link">{text}</Button>,
     },
     {
-      title: 'Price',
+      title: t('price'),
       dataIndex: 'price',
       width: 100,
       key: 'price',
     },
     {
-      title: 'Material',
+      title: t('material'),
       dataIndex: 'material',
       key: 'material',
       render: (material: Array<string>) => (
@@ -57,23 +62,23 @@ function renderColumns(onEdit: (chairId: string) => void, onDelete: (chairId: st
       ),
     },
     {
-      title: 'Weight',
+      title: t('weight'),
       dataIndex: 'weight',
-      width: 100,
+      width: 150,
       key: 'weight',
     },
     {
-      title: 'Delete',
+      title: t('delete'),
       key: 'delete',
-      width: 50,
+      width: 80,
       render: (text: string, record: Chair) => {
         const handleDeleteRecord = async () => {
           Modal.confirm({
-            title: 'Are you sure to delete this chair?',
+            title: t('modal-confirm'),
             icon: <ExclamationCircleOutlined />,
-            okText: 'Yes',
+            okText: t('yes'),
             okType: 'danger',
-            cancelText: 'No',
+            cancelText: t('no'),
             onOk() {
               return new Promise((resolve) => {
                 setTimeout(async () => {
@@ -106,10 +111,10 @@ interface ChairTableProp {
 
 export default function ChairTable({ onEdit, onDelete, onPageChange, chairList }: ChairTableProp) {
   const pagination = useAppSelector(selectChairPagination);
-
+  const { t } = useTranslation();
   return (
     <Table
-      columns={renderColumns(onEdit, onDelete)}
+      columns={renderColumns(onEdit, onDelete, t)}
       dataSource={chairList}
       rowKey="id"
       pagination={{

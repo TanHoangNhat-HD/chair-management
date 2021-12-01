@@ -1,7 +1,10 @@
-import * as React from 'react';
+import { useTranslation } from 'react-i18next';
 
-export interface NotFoundProps {}
-
-export function NotFound(props: NotFoundProps) {
-  return <div>Not Found</div>;
+export function NotFound() {
+  const { t } = useTranslation();
+  return (
+    <div style={{ padding: '50px' }}>
+      <h1>{t('notfound')}</h1>
+    </div>
+  );
 }

@@ -1,0 +1,42 @@
+{
+  "chair": {
+    "chair": "Chair",
+    "management": "Chair Management"
+  },
+  "user": {
+    "management": "User management"
+  },
+  "setting": "Setting",
+  "welcome": "Hello",
+  "login": "Log in",
+  "logout": "Log out",
+  "notfound": "Page not found",
+  "loginStatus": "You already login!!!",
+  "now-you-can": "now you can",
+  "go-to-admin-page": "go to Admin page",
+  "or": "or",
+  "logging-out": "logging out ...",
+  "find-chair": "Find chair ...",
+  "all": "All",
+  "net": "Net",
+  "fabric": "Fabric",
+  "plastic": "Plastics",
+  "alloy": "Alloy",
+  "name": "Name",
+  "price": "Price",
+  "material": "Material",
+  "weight": "Weight",
+  "delete": "Delete",
+  "modal-confirm": "Are you sure to delete this chair?",
+  "yes": "Delete",
+  "no": "Cancel",
+  "require": "is required",
+  "be-a-number": "must be a number",
+  "pos-number": "must be a positive number",
+  "add": "Add chair",
+  "add-new": "Add new chair",
+  "update": "Update chair",
+  "reset": "Clear",
+  "username": "Username",
+  "password": "Password"
+}

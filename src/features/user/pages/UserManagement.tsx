@@ -1,12 +1,15 @@
 import { Breadcrumb, Layout } from 'antd';
 import HeaderComponent from 'components/layout/Header/Header.component';
+import { useTranslation } from 'react-i18next';
 
 const { Content, Footer } = Layout;
 
 export default function UserManagement() {
+  const { t } = useTranslation();
+
   return (
     <Layout className="site-layout">
-      <HeaderComponent headerTitle="User Management" />
+      <HeaderComponent headerTitle={t('user.management')} />
       <Content style={{ margin: '0 16px' }}>
         <Breadcrumb style={{ margin: '16px 0' }}>
           <Breadcrumb.Item>Admin</Breadcrumb.Item>
