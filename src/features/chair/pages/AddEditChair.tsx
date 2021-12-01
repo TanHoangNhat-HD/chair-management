@@ -15,7 +15,7 @@ export default function AddEditChair() {
     formState: { errors, isSubmitting },
     reset,
     setValue,
-  } = useForm<Chair>();
+  } = useForm();
 
   const handleFormSubmit: SubmitHandler<Chair> = async (value: Chair) => {
     try {
