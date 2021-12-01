@@ -1,4 +1,4 @@
-import { call, put, takeLatest } from '@redux-saga/core/effects';
+import { call, debounce, put, takeLatest } from '@redux-saga/core/effects';
 import { PayloadAction } from '@reduxjs/toolkit';
 import chairApi from 'api/chairApi';
 import { Chair, ListParams, ListResponse } from 'models';
@@ -13,6 +13,11 @@ function* fetchChairList(action: PayloadAction<ListParams>) {
   }
 }
 
+function* handleSearchDebounce(action: PayloadAction<ListParams>) {
+  yield put(chairActions.setFilters(action.payload));
+}
+
 export default function* chairSaga() {
   yield takeLatest(chairActions.fetchChairList, fetchChairList);
+  yield debounce(300, chairActions.setFiltersDebounce.type, handleSearchDebounce);
 }

@@ -43,6 +43,7 @@ const chairSlice = createSlice({
     setFilters(state, action: PayloadAction<ListParams>) {
       state.filter = action.payload;
     },
+    setFiltersDebounce(state, action: PayloadAction<ListParams>) {},
   },
 });
 
