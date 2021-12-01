@@ -6,6 +6,7 @@ export default function ChairManagement() {
   return (
     <Layout className="site-layout">
       <HeaderComponent headerTitle="Chair Management" />
+
       <Outlet />
       <Layout.Footer style={{ textAlign: 'center' }}>
         Chair Management ©2021 Created by HDWebSoft

@@ -26,6 +26,7 @@ function App() {
             <Route path="chairs" element={<ChairManagement />}>
               <Route path="" element={<ShowChair />} />
               <Route path="add" element={<AddEditChair />} />
+              <Route path="edit/:chairId" element={<AddEditChair />} />
             </Route>
             <Route path="users" element={<UserManagement />} />
           </Route>
