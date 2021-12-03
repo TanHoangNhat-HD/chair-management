@@ -10,7 +10,7 @@ export interface HeaderComponentProps {
 }
 
 export default function HeaderComponent({ headerTitle }: HeaderComponentProps) {
-  const { logout } = useAuth();
+  const { logout, user } = useAuth();
   const { t } = useTranslation();
 
   const menu = (
@@ -33,7 +33,7 @@ export default function HeaderComponent({ headerTitle }: HeaderComponentProps) {
       <div className={style.header__right}>
         <Dropdown overlay={menu} placement="bottomRight">
           <Button style={{ color: 'white' }} size="large" icon={<UserOutlined />} type="link">
-            {t('welcome')} TanHN
+            {t('welcome')} {user?.name}
           </Button>
         </Dropdown>
       </div>

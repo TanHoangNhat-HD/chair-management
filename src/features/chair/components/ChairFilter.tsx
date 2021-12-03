@@ -14,6 +14,7 @@ export default function ChairFilter({ filter, onSearch, onFilter }: ChairFilterP
   const handleSearchChange = (e: ChangeEvent<HTMLInputElement>) => {
     const newFilter = {
       ...filter,
+      _page: 1,
       name_like: e.target.value,
     };
     onSearch(newFilter);
@@ -22,6 +23,7 @@ export default function ChairFilter({ filter, onSearch, onFilter }: ChairFilterP
   const handleFilterChange = (value: string) => {
     const newFilter = {
       ...filter,
+      _page: 1,
       material_like: value,
     };
     onFilter(newFilter);

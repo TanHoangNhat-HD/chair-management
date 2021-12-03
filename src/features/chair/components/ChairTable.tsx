@@ -53,7 +53,7 @@ function renderColumns(
       key: 'material',
       render: (material: Array<string>) => (
         <>
-          {material.map((m) => (
+          {material?.map((m) => (
             <Tag key={m} color={materialColor[`${m}`]}>
               {m.toUpperCase()}
             </Tag>
